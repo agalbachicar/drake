@@ -268,37 +268,36 @@ class Builder {
   std::vector<int> GetInitialLaneToProcess(std::vector<Connection>* lanes,
                                            const int index);
 
-  /// It loads the tangents into each of the waypoints using
-  /// @function CreateSpline API.
+  // It loads the tangents into each of the waypoints using
+  // CreateSpline API.
   void BuildTangentsForWaypoints(std::vector<DirectedWaypoint>* waypoints);
 
-  /// It computes a vector that joins base to destiny and then computes
-  /// the projection of it against base tangent. It returns a double with
-  /// that value
+  // It computes a vector that joins base to destiny and then computes
+  // the projection of it against base tangent. It returns a double with
+  // that value
   double ComputeDistance(const DirectedWaypoint& base,
                          const DirectedWaypoint& destiny) const;
 
-  /// It checks if we need to add a dummy or an interpolated waypoint on the
-  /// lanes given the ids of the lanes that have for index a control
-  /// point before the others.
+  // It checks if we need to add a dummy or an interpolated waypoint on the
+  // lanes given the ids of the lanes that have for index a control
+  // point before the others.
   void AddWaypointIfNecessary(const std::vector<int>& ids,
                               std::vector<Connection>* lanes, const int index);
 
-  /// It is the base function that wraps all the process of adding waypoints
-  /// when necessary for the lanes.
-  /// It will throw std::runtime_error if lanes vector is nullptr or if any
-  /// of the called functions constraints are not met.
+  // It is the base function that wraps all the process of adding waypoints
+  // when necessary for the lanes.
+  // It will throw std::runtime_error if lanes vector is nullptr or if any
+  // of the called functions constraints are not met.
   void CreateNewControlPointsForLanes(std::vector<Connection>* lanes);
 
-  /// This function checks the list of lanes their waypoints
-  /// and copies all the waypoints at index position from lane_ids
-  /// respective lanes. Then, it orders them following the direction of each
-  /// control point from right to left. It will return lane_ids with the
-  /// correct order of the ids. In case lane_ids is nullptr or its size is 0
-  /// it will throw std::runtime_error. If the size of lane_ids just one, it
-  /// will return without doing anything.
-  void OrderLaneIds(std::vector<Connection>* lanes, std::vector<int>* lane_ids,
-                    const int index);
+  // This function checks the list of lanes their waypoints
+  // and copies all the waypoints at index position from lane_ids
+  // respective lanes. Then, it orders them following the direction of each
+  // control point from right to left. It will return lane_ids with the
+  // correct order of the ids. In case lane_ids is nullptr or its size is 0
+  // it will throw std::runtime_error. If the size of lane_ids just one, it
+  // will return without doing anything.
+  void OrderLaneIds(std::vector<Connection>* lanes, std::vector<int>* lane_ids);
 
   // It calculates the momentum of wp against point with normalized tangent
   // value. As all the DirectedWaypoints are thought to be on the x-y play, the

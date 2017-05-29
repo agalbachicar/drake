@@ -69,7 +69,7 @@ SplineLane::DoGetOrientation(const api::LanePosition& lane_pos) const {
 }
 
 api::LanePosition SplineLane::DoEvalMotionDerivatives(
-    const api::LanePosition& position,
+    const api::LanePosition&,
     const api::IsoLaneVelocity& velocity) const {
   return api::LanePosition(velocity.sigma_v, velocity.rho_v, velocity.eta_v);
 }
@@ -184,7 +184,7 @@ Rot3 SplineLane::Rabg_of_s(const double s) const {
   return Rot3(0.0, 0.0, heading_of_s(s));
 }
 
-api::RBounds SplineLane::do_lane_bounds(double s) const {
+api::RBounds SplineLane::do_lane_bounds(double) const {
   return api::RBounds(-width_ / 2., width_ / 2.);
 }
 

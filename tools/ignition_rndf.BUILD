@@ -9,9 +9,9 @@ cc_library(
     hdrs = glob([
         "include/**/*.hh",
     ]),
-    deps = [
-        "@ignition_math//:ignition_math"
-    ],
     includes = ["include"],
     visibility = ["//visibility:public"],
+    deps = [
+        "@ignition_math",
+    ],
 )

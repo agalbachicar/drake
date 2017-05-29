@@ -82,7 +82,7 @@ class SplineLane : public Lane {
       const api::LanePosition& lane_pos) const override;
 
   api::LanePosition DoEvalMotionDerivatives(
-      const api::LanePosition& position,
+      const api::LanePosition&,
       const api::IsoLaneVelocity& velocity) const override;
 
   // It will provide the x,y coordinates based on the
@@ -136,7 +136,7 @@ class SplineLane : public Lane {
   // It will compute the lane_bounds taking into account the Lane::width. Based
   // on it, it will construct an api::RBounds object whose r_min variable is
   // half the width but negative, and the r_max variable is half the width.
-  api::RBounds do_lane_bounds(double s) const override;
+  api::RBounds do_lane_bounds(double) const override;
 
   // If the segment has only one lane, this one, the return value will be
   // identical to do_lane_bounds(s). However, for the general case, each lane

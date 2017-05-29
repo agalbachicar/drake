@@ -52,7 +52,8 @@ void Builder::SetInvertedLanes(std::vector<Connection>* lanes) {
   const auto base_point =
     std::get<0>(bounding_box_) - ignition::math::Vector3d(1., 1., 0);
   // Get all the momentums and mark the lanes if necessary
-  int first_lane_sign_momentum, other_lane_sign_momentum;
+  int first_lane_sign_momentum = 1;
+  int other_lane_sign_momentum = 1;
   for (int i = 0; i < static_cast<int>(lanes->size()); i++) {
     const double momentum =
       CalculateConnectionMomentum(base_point, lanes->at(i).waypoints());
@@ -99,7 +100,7 @@ void Builder::CreateSegmentConnections(const uint segment_id,
           valid_lane_ids.push_back(j);
         }
       }
-      OrderLaneIds(&(it.second), &valid_lane_ids, 0);
+      OrderLaneIds(&(it.second), &valid_lane_ids);
       // Create a segment name
       std::string segment_key_name =
           std::to_string(segment_id) + std::string("-") +
@@ -201,7 +202,7 @@ void Builder::GroupLanesByDirection(
 }
 
 void Builder::OrderLaneIds(std::vector<Connection>* lanes,
-                           std::vector<int>* lane_ids, const int index) {
+                           std::vector<int>* lane_ids) {
   DRAKE_DEMAND(lane_ids != nullptr);
   DRAKE_DEMAND(lane_ids->size() > 0);
   // Check for a sigle lane road where we don't have to compute anything
