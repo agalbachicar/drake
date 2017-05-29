@@ -12,6 +12,13 @@ namespace maliput {
 namespace rndf {
 
 const double SplineLane::kSplineErrorBound = 1e-6;
+
+// This tension value is used near 1 to make sure that the spline won't have any
+// loops. This is being improved in issues:
+// - https://bitbucket.org/ekumen/terminus-simulation/issues/149
+// - https://bitbucket.org/ekumen/terminus-simulation/issues/134
+// Once this issues are finished, code in builder.cc will improve the tangent
+// interpolation so as to get a smoother base line than the current one.
 const double SplineLane::kTension = 0.99;
 
 SplineLane::SplineLane(
