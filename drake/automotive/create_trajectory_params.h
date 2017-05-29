@@ -4,9 +4,7 @@
 // This data should come from files loaded at runtime, instead.
 
 #include <memory>
-#include <string>
 #include <tuple>
-#include <vector>
 
 #include "drake/automotive/curve2.h"
 #include "drake/automotive/maliput/api/road_geometry.h"

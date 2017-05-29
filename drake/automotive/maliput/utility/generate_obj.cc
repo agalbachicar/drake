@@ -416,7 +416,7 @@ void StripeLaneBounds(GeoMesh* mesh, const api::Lane* lane,
 void DrawLaneArrow(GeoMesh* mesh, const api::Lane* lane, double grid_unit,
                    double s_offset, double s_size, double h_offset) {
   DRAKE_DEMAND(s_offset >= 0.);
-  // DRAKE_DEMAND((s_offset + s_size) <= lane->length());
+  DRAKE_DEMAND((s_offset + s_size) <= lane->length());
   const double kRelativeWidth = 0.8;
 
   const api::RBounds rb0 = lane->lane_bounds(s_offset);

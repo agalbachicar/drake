@@ -86,7 +86,6 @@ DEFINE_bool(with_stalled_cars, false, "Places a stalled vehicle at the end of "
             "each lane of a dragway. This option is only enabled when the "
             "road is a dragway.");
 
-
 namespace drake {
 
 using maliput::api::Lane;
@@ -103,7 +102,7 @@ constexpr double kControlledCarRowSpacing{5};
 enum class RoadNetworkType {
   flat = 0,
   dragway = 1,
-  onramp = 2,
+  onramp = 2
 };
 
 std::string MakeChannelName(const std::string& name) {
@@ -203,6 +202,7 @@ void AddVehicles(RoadNetworkType road_network_type,
     const maliput::api::RoadGeometry* road_geometry,
     AutomotiveSimulator<double>* simulator) {
   AddSimpleCars(simulator);
+
   if (road_network_type == RoadNetworkType::dragway) {
     DRAKE_DEMAND(road_geometry != nullptr);
     const maliput::dragway::RoadGeometry* dragway_road_geometry =
@@ -264,6 +264,7 @@ void AddVehicles(RoadNetworkType road_network_type,
             "StalledCarChannel" + std::to_string(i), state);
       }
     }
+
   } else if (road_network_type == RoadNetworkType::onramp) {
     DRAKE_DEMAND(road_geometry != nullptr);
     for (int i = 0; i < FLAGS_num_maliput_railcar; ++i) {
@@ -307,7 +308,6 @@ void AddFlatTerrain(AutomotiveSimulator<double>*) {
   // drake/multibody/rigid_body_tree_construction.h.
 }
 
-
 // Adds a dragway to the provided `simulator`. The number of lanes, lane width,
 // lane length, and the shoulder width are all user-specifiable via command line
 // flags.
@@ -323,14 +323,12 @@ const maliput::api::RoadGeometry* AddDragway(
   return simulator->SetRoadGeometry(std::move(road_geometry));
 }
 
-
 // Adds a monolane-based onramp road network to the provided `simulator`.
 const maliput::api::RoadGeometry* AddOnramp(
     AutomotiveSimulator<double>* simulator) {
   auto onramp_generator = std::make_unique<MonolaneOnrampMerge>();
   return simulator->SetRoadGeometry(onramp_generator->BuildOnramp());
 }
-
 
 // Adds a terrain to the simulated world. The type of terrain added depends on
 // the provided `road_network_type` parameter. A pointer to the road network is
@@ -339,7 +337,6 @@ const maliput::api::RoadGeometry* AddOnramp(
 const maliput::api::RoadGeometry* AddTerrain(RoadNetworkType road_network_type,
     AutomotiveSimulator<double>* simulator) {
   const maliput::api::RoadGeometry* road_geometry{nullptr};
-
   switch (road_network_type) {
     case RoadNetworkType::flat: {
       AddFlatTerrain(simulator);
@@ -375,7 +372,6 @@ RoadNetworkType DetermineRoadNetworkType() {
   } else {
     return RoadNetworkType::flat;
   }
-
 }
 
 int main(int argc, char* argv[]) {

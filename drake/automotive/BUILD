@@ -391,26 +391,6 @@ drake_cc_binary(
 )
 
 drake_cc_binary(
-    name = "automotive_demo_rndf",
-    srcs = [
-        "automotive_rndf.cc",
-        "create_trajectory_params.cc",
-        "create_trajectory_params.h",
-    ],
-    data = [
-        ":models",
-        "//drake/automotive/maliput/rndf:rndfs",
-    ],
-    deps = [
-        ":automotive_simulator",
-        ":monolane_onramp_merge",
-        "//drake/automotive/maliput/dragway",
-        "//drake/automotive/maliput/rndf",
-        "//drake/common:text_logging_gflags",
-    ],
-)
-
-drake_cc_binary(
     name = "car_sim_lcm",
     srcs = [
         "car_sim_lcm.cc",
@@ -465,24 +445,6 @@ py_binary(
     ],
 )
 
-py_binary(
-    name = "demo_rndf",
-    srcs = ["automotive_demo_rndf.py"],
-    data = [
-        ":automotive_demo_rndf",
-        ":lcm-spy",
-        ":steering_command_driver",
-        "@drake_visualizer//:drake-visualizer",
-        "@lcm//:lcm-logger",
-        "//drake/automotive/maliput/rndf:rndfs",
-    ],
-    main = "automotive_demo_rndf.py",
-    deps = [
-        "@lcm//:lcm-python",
-    ],
-)
-
-
 genrule(
     name = "speed_bump_genrule",
     srcs = ["models/speed_bump/speed_bump.yaml"],
@@ -502,8 +464,6 @@ filegroup(
         "models/speed_bump/speed_bump.obj",
     ],
 )
-
-
 
 # === test/ ===
 

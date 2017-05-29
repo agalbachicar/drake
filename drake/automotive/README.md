@@ -62,37 +62,6 @@ The following demos are available:
        --num_trajectory_car=12 \
        --num_maliput_railcar=1
    ```
- * RNDF parsing and visualizing. You must set a file path to a map using
- `rndf_file_path`. You can also add a `TrajetoryCar` and set the names of the lanes
- based on waypoint connections as shown below:
-
-   ```
-   bazel run drake/automotive:demo_rndf -- \
-      -num_maliput_railcar=2 \
-      -rndf_base_speed=7 \
-      -rndf_first_lane=l:1_1_1-1_1_2 \
-      -rndf_file_path=drake/automotive/maliput/rndf/maps/simple_city.rndf
-   ```
-
- If you want to run the Prius over the Darpa map, you can do the following:
-
-   ```
-   bazel run drake/automotive:demo_rndf -- \
-    -num_maliput_railcar=3 \
-    -rndf_base_speed=10 \
-    -rndf_first_lane=l:1_2_1-1_2_7 \
-    -rndf_file_path=drake/automotive/maliput/rndf/maps/darpa.rndf
-   ```
-
-  Or you can select the MCity map:
-
-   ```
-    bazel run drake/automotive:demo_rndf -- \
-    -num_maliput_railcar=1 \
-    -rndf_base_speed=10 \
-    -rndf_first_lane=l:1_1_1-1_1_2 \
-    -rndf_file_path=drake/automotive/maliput/rndf/maps/mcity.rndf
-   ```
 
 Driving the Prius
 -----------------
